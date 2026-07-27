@@ -1,0 +1,15 @@
+{
+  "name": "gacha-game-types",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Type definitions for processed gacha-game data models (HSR, GI, and more)",
+  "scripts": {
+    "build": "tsc && tsc-alias"
+  },
+  "devDependencies": {
+    "type-fest": "^4.41.0"
+  },
+  "engines": {
+    "node": ">=14.18"
+  }
+}
