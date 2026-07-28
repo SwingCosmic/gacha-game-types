@@ -146,11 +146,12 @@ import type { IMetadataEntity } from "@game/common/IEntity";
 | 相对路径 | 用途 | 入口类型 | 赛季 |
 |----------|------|----------|------|
 | `{lang}/rogue/tourn/index.json` | 赛季列表 | `IMetadataEntity<number>[]` | |
-| `{lang}/rogue/tourn/roomcomptypes.json` | 房间类型 | `HsrRogueRoomCompType[]` | |
-| `{lang}/rogue/tourn/titans.json` | 泰坦 | `HsrRogueTitan[]` | S2 |
-| `{lang}/rogue/tourn/personas.json` | 面具 | `HsrRoguePersona[]` | S3 |
-| `{lang}/rogue/tourn/personagifts.json` | 奇迹 | `HsrRoguePersonaGift[]` | S3 |
-| `{lang}/rogue/tourn/roomattributes.json` | 信标 | `HsrRogueRoomAttribute[]` | S3 |
+| `{lang}/rogue/tourn/miracles.json` | 奇物 | `HsrRogueMiracle[]`（`rogue/tourn`） | 跨赛季 |
+| `{lang}/rogue/tourn/titans.json` | 泰坦 | `HsrRogueTitan[]`（`rogue/tourn2`） | S2 |
+| `{lang}/rogue/tourn/roomcomptypes.json` | 房间类型 | `HsrRogueRoomCompType[]`（`rogue/tourn3`） | S3 |
+| `{lang}/rogue/tourn/personas.json` | 面具 | `HsrRoguePersona[]`（`rogue/tourn3`） | S3 |
+| `{lang}/rogue/tourn/personagifts.json` | 奇迹 | `HsrRoguePersonaGift[]`（`rogue/tourn3`） | S3 |
+| `{lang}/rogue/tourn/roomattributes.json` | 信标 | `HsrRogueRoomAttribute[]`（`rogue/tourn3`） | S3 |
 
 ### 银河战力党
 
