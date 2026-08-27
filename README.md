@@ -132,6 +132,12 @@ import type { IMetadataEntity } from "@game/common/IEntity";
 | `{lang}/mission/graph.json` | 主线任务关系图，含章节、任务和任务包 | `HsrMainMissionGraph` |
 | `{lang}/mission/submission.json` | 子任务列表 | `HsrSubMission[]` |
 
+### 对话
+
+| 相对路径 | 用途 | 入口类型 |
+|----------|------|----------|
+| `{lang}/scenario/talksentence.json` | 对话台词（对白 / 旁白 / 前情提要等） | `HsrTalkSentence[]` |
+
 ### 如我所书(δ-me13.exe)
 
 | 相对路径 | 用途 | 入口类型 |

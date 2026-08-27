@@ -29,7 +29,7 @@ export interface HsrMainMission extends IMetadataEntity<number>, MainMissionInfo
   missionPack?: number;
   chapterId: number;
   subRewardList: number[];
-  
+  isInRaid?: boolean;
 }
 
 /** 主线任务包 */
