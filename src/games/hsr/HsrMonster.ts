@@ -97,6 +97,8 @@ export interface HsrMonsterTemplate extends IMetadataEntity<number> {
   initialDelayRatio: number | null;
   stanceCount: number;
   stanceType: string;
+  /** 弱点列表 (取模板下首个怪物的 StanceWeakList) */
+  stanceWeakList: string[];
   natureId: number;
   minimumFatigueRatio: number | null;
   atlasSortId?: number;

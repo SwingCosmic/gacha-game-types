@@ -13,6 +13,7 @@
 | 相对路径 | 用途 | 入口类型 |
 |----------|------|----------|
 | `{lang}/items.json` | 通用物品列表 | `HsrItemConfig[]` |
+| `{lang}/statuses.json` | 战斗状态配置 | `HsrStatus[]` |
 | `{lang}/textjoin.json` | 动态文本拼接配置 | `HsrTextJoin[]` |
 
 ## 角色 / 忆灵
