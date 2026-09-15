@@ -106,5 +106,9 @@ export interface HsrMonsterTemplate extends IMetadataEntity<number> {
   speedModifyValue?: number | null;
   stanceModifyValue?: number | null;
   templateGroupId?: number;
+  /** 等级曲线分组 (取模板下首个怪物变体的值, 供前端确定默认等级曲线) */
+  hardLevelGroup?: number;
+  /** 精英组 (取模板下首个怪物变体的值, 供前端确定默认战斗组修正) */
+  eliteGroup?: number;
   monsters: HsrMonster[];
 }
