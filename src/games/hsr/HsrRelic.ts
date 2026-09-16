@@ -18,7 +18,7 @@ export interface HsrRelicSetBonus {
   desc: string;
   properties: {
     type: string;
-    value: number | null;
+    value?: number;
   }[];
   abilityName: string;
   params: number[];

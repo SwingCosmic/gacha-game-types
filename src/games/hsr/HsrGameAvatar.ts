@@ -23,9 +23,7 @@ export interface HsrGameAvatarSimple extends HsrAvatarView, HsrItem {
 }
 
 export interface HsrGameServantSimple extends IMetadataEntity<number> {
-  /** 角色列表图标 */
   icon: string;
-  /** 角色头像图标 */
   roundIcon: string;
   [key: string]: any;
 }
@@ -79,7 +77,7 @@ export interface HsrAvatarRank extends IMetadataEntity<number> {
 }
 
 export interface HsrAvatarSkillTree extends IMetadataEntity<number> {
-  /** 1加成，2技能，3额外能力，4忆灵技，5特殊 5目前只有记忆主有 */
+  /** 1加成，2技能，3额外能力，4忆灵技，5特殊 */
   pointType: number;
   anchorType: string;
   maxLevel: number;

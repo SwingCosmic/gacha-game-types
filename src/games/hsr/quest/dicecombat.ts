@@ -2,9 +2,7 @@ import { HsrItem, HsrItemCost } from "../HsrItem";
 
 export interface HsrDiceAvatarSimple extends HsrItem {
   path: string;
-  /** 角色列表图标 */
   icon: string;
-  /** 立绘 */
   portrait: string;
   portraitBg: string;
   portrait3D: string;

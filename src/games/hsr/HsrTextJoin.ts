@@ -7,6 +7,6 @@ export interface HsrTextJoin {
   id: number;
   defaultItemId: number;
   isOverride: boolean;
-  type: string | null;
+  type?: string;
   items: HsrTextJoinItem[];
 }

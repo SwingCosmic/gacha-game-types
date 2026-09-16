@@ -19,7 +19,7 @@ export interface HsrMainMissionCombo {
 export interface HsrMainMissionEdge {
   source: number;
   target: number;
-  /** track: NextTrackMainMission；unlock: TakeParam 前置任务 */
+  /** track: 主线追踪关系；unlock: 前置解锁关系 */
   kind?: "track" | "unlock";
 }
 

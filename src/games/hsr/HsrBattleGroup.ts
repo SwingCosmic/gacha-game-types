@@ -6,8 +6,8 @@ export interface HsrHardLevelGroupLevel {
   hpRatio: number;
   speedRatio: number;
   stanceRatio: number;
-  statusProbability: number | null;
-  statusResistance: number | null;
+  statusProbability?: number;
+  statusResistance?: number;
   combatPowerList: number[];
 }
 

@@ -4,9 +4,7 @@ import { HsrAvatarPromotion, HsrAvatarSkillLevel } from "./HsrGameAvatar";
 
 export interface HsrLightconeSimple extends HsrItem {
   path: string;
-  /** 角色列表图标 */
   icon: string;
-  /** 立绘 */
   portrait: string;
 
   [key: string]: any;
