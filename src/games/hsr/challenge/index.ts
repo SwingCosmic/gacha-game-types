@@ -83,7 +83,7 @@ export interface HsrChallengeTarget {
 
 /** 出场索引条目（语言无关） */
 export interface HsrChallengeAppearance {
-  mode: "theme" | "story" | "boss" | "peak";
+  mode: "maze" | "story" | "boss" | "peak";
   seasonId: number;
   floorIndex: number;
   half: HsrChallengeNodeHalf;
