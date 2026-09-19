@@ -9,6 +9,14 @@ export interface HsrChallengeBuff {
   params: number[];
 }
 
+/** 首领图鉴特性，首个为核心特性、其余为常规特性 */
+export interface HsrChallengeTrait {
+  id: number;
+  name: string;
+  desc: string;
+  params: number[];
+}
+
 /** 波次中的单个敌人 */
 export interface HsrChallengeEnemy {
   /** 战斗 ID，精确到变体 */
@@ -17,6 +25,11 @@ export interface HsrChallengeEnemy {
   templateId: number;
   /** 挑战侧 HP 公式计算并向上取整 */
   hp: number;
+  /**
+   * 库内基准血量：同口径但不含挑战战斗组（EliteGroup）倍率，向上取整。
+   * 与 hp 的比值即挑战侧相对敌人库的精英组倍率差，供跳转敌人详情时对照展示。
+   */
+  rawHp: number;
 }
 
 /** 一个关卡 */
@@ -32,11 +45,12 @@ export interface HsrChallengeStage {
   waves: HsrChallengeEnemy[][];
 }
 
-/** 上半 / 下半 / 第三节点（星启） */
-export type HsrChallengeNodeHalf = 1 | 2 | 3;
+/** 节点序号（1 起始）；1/2 为标准节点，3 为星启节点 */
+export type HsrChallengeNodeIndex = 1 | 2 | 3;
 
 export interface HsrChallengeNode {
-  half: HsrChallengeNodeHalf;
+  /** 节点序号（1 起始） */
+  index: HsrChallengeNodeIndex;
   /** 节点名，最新一期可能为空 */
   name?: string;
   /** 推荐弱点，与 HsrMonster 弱点字段同口径 */
@@ -45,6 +59,8 @@ export interface HsrChallengeNode {
   enemyBuffs: HsrChallengeBuff[];
   /** 展示 Boss（模板 ID 口径），无则为空数组 */
   bossMonsterIds: number[];
+  /** 展示 Boss 的图鉴特性，按源顺序 */
+  bossTraits: HsrChallengeTrait[];
   stages: HsrChallengeStage[];
 }
 
@@ -56,16 +72,16 @@ export interface HsrChallengeFloor {
   nodes: HsrChallengeNode[];
 }
 
-/** 四模式期实体公共基类 */
+/** 四模式每期挑战实体公共基类 */
 export interface HsrChallengeSeasonBase extends IMetadataEntity<number> {
   code: string;
-  /** 期开始/结束时间，格式 "YYYY-MM-DD HH:mm:ss" */
+  /** 每期开始/结束时间，格式 "YYYY-MM-DD HH:mm:ss" */
   beginTime?: string;
   endTime?: string;
   icon: string;
   poster?: string;
-  /** 期天气 */
-  weatherBuff?: HsrChallengeBuff;
+  /** 每期环境buff；末日幻影无 */
+  mazeBuff?: HsrChallengeBuff;
   /** 玩家可选 buff，外层按节点或分组 */
   selectableBuffs: HsrChallengeBuff[][];
   /** 层列表；期列表（index.json）中不含本字段 */
@@ -86,7 +102,7 @@ export interface HsrChallengeAppearance {
   mode: "maze" | "story" | "boss" | "peak";
   seasonId: number;
   floorIndex: number;
-  half: HsrChallengeNodeHalf;
+  nodeIndex: HsrChallengeNodeIndex;
   /** 敌人等级 */
   level: number;
   hp: number;
