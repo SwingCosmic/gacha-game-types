@@ -84,6 +84,8 @@ export interface HsrChallengeSeasonBase extends IMetadataEntity<number> {
   mazeBuff?: HsrChallengeBuff;
   /** 玩家可选 buff，外层按节点或分组 */
   selectableBuffs: HsrChallengeBuff[][];
+  /** 期内是否存在星启配置；期索引保留该字段 */
+  hasTierce?: boolean;
   /** 层列表；期列表（index.json）中不含本字段 */
   floors: HsrChallengeFloor[];
 }
