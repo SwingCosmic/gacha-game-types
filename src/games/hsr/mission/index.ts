@@ -11,6 +11,10 @@ export interface MainMissionInfo<T extends string> {
 
 /** 主线任务 */
 export interface HsrMainMission extends IMetadataEntity<number>, MainMissionInfo<"mission"> {
+  /**
+   * desc 的回退内容（首个带描述的子任务）
+   */
+  descFallback?: string;
   displayPriority: number;
   nextMainMissionList: number[];
   takeOperation: string;
