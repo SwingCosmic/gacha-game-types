@@ -1,4 +1,4 @@
-import { HsrMainMission, HsrMainMissionPack, HsrMainMissionChapter } from "./index";
+import { HsrMainMission, HsrMainMissionPack, HsrMainMissionChapter, HsrMainMissionStoryline } from "./index";
 
 
 
@@ -12,7 +12,7 @@ export interface HsrMainMissionNode {
 
 export interface HsrMainMissionCombo {
   id: number;
-  data: HsrMainMissionPack | HsrMainMissionChapter;
+  data: HsrMainMissionPack | HsrMainMissionChapter | HsrMainMissionStoryline;
 }
 ;
 

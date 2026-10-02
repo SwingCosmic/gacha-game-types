@@ -1,12 +1,18 @@
 import { IMetadataEntity } from "@game/common/IEntity";
 
-export interface MainMissionInfo<T extends string> {
+/** 任务图元素核心字段 */
+export interface MainMissionCoreInfo<T extends string> {
+  kind: T;
+  /** 图内显示顺序（章节内任务序号或章节展示序） */
+  order?: number;
+}
+
+/** 有剧情内容的任务图元素字段（任务/章节） */
+export interface MainMissionInfo<T extends string> extends MainMissionCoreInfo<T> {
   desc: string;
   type: string;
   worldId: number;
-  kind: T;
   isEndmost: boolean;
-  order?: number;
 }
 
 /** 主线任务 */
@@ -37,7 +43,7 @@ export interface HsrMainMission extends IMetadataEntity<number>, MainMissionInfo
 }
 
 /** 主线任务包 */
-export interface HsrMainMissionPack extends IMetadataEntity<number>, MainMissionInfo<"pack"> {
+export interface HsrMainMissionPack extends IMetadataEntity<number>, MainMissionCoreInfo<"pack"> {
   mainMissionIds: number[];
 }
 
@@ -54,6 +60,14 @@ export interface HsrMainMissionChapter extends IMetadataEntity<number>, MainMiss
   endMission?: number;
   missionIds: number[];
   displayPriority?: number;
+}
+
+/** 多视角故事线（命途歧路泳道按视角名+头像分组） */
+export interface HsrMainMissionStoryline extends IMetadataEntity<number>, MainMissionCoreInfo<"storyline"> {
+  chronicleIcon?: string;
+  mediumImg?: string;
+  color?: string;
+  missionIds: number[];
 }
 
 export interface HsrWorldData extends IMetadataEntity<number> {

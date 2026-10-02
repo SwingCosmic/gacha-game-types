@@ -5,7 +5,7 @@ import { IEntity } from "@game/common/IEntity";
  *
  * 该字段用于区分来源表，不是 `ELevelPerformanceType` 的直接映射；
  */
-export type HsrPerformanceType = "A" | "C" | "D" | "DS" | "E";
+export type HsrPerformanceType = "A" | "C" | "D" | "DS" | "E" | "Video";
 
 /** 与演出来源类型对应的表名。 */
 export type HsrPerformanceSourceTable = `Performance${HsrPerformanceType}`;
@@ -87,10 +87,60 @@ export interface HsrPerformanceE
   isIntroDialogue?: boolean;
 }
 
+/** 演出表Video（播放视频的演出） */
+export interface HsrPerformanceVideo extends HsrPerformanceBase<"Video"> {}
+
+/** 官方剧情回顾/跳过确认文案 */
+export interface HsrPerformanceSkipOverride extends IEntity<number> {
+  /** 演出ID */
+  id: number;
+  /** 回顾界面的演出类型标注。
+   * 与演出来源表不严格对应（如标注 D 的行可能实际来自 PerformanceC 表） 
+   */
+  performanceType: "C" | "D" | "E" | "PlayVideo";
+  desc?: string;
+  /** 是否用 overrideCharacterList 覆盖回顾界面的角色展示 */
+  isOverrideCharacter?: boolean;
+  /** 回顾界面展示的角色，元素为 TalkSentenceName_* 文本键 */
+  overrideCharacterList: string[];
+  important?: boolean;
+  confirmRequiredToSkip?: boolean;
+  /** 所属演出包 ID（极少数行有） */
+  packId?: number;
+}
+
+/**
+ * 官方剧情回放文案覆盖。
+ *
+ * 为剧情回放界面提供段落文案；与 SkipOverride 同演出共存时两者文本不同
+ * （SkipOverride 面向跳过确认，ReplayOverride 面向回放展示），回放展示以本表为准。
+ */
+export interface HsrPerformanceReplayOverride extends IEntity<number> {
+  /** 演出ID */
+  id: number;
+  /** 回放界面的演出类型标注 */
+  performanceType: "A" | "PlayVideo";
+  desc?: string;
+}
+
+/**
+ * 演出跳过标记（PerformanceSkipFlagC/D/E 合并）。
+ */
+export interface HsrPerformanceSkipFlag extends IEntity<number> {
+  /** 演出ID */
+  id: number;
+  skippable?: boolean;
+  /** 演出中出现的角色，元素为 TalkSentenceName_* 文本键 */
+  actorList: string[];
+  /** 官方标注该演出包含重要分支（选项/真随机结果的分歧内容） */
+  containImportBranch?: boolean;
+}
+
 /** 联合类型，包含所有演出类型 */
 export type HsrPerformance =
   | HsrPerformanceA
   | HsrPerformanceC
   | HsrPerformanceD
   | HsrPerformanceDS
-  | HsrPerformanceE;
+  | HsrPerformanceE
+  | HsrPerformanceVideo;
