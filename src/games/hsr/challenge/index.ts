@@ -23,11 +23,17 @@ export interface HsrChallengeEnemy {
   monsterId: number;
   /** 敌人模板主键，前端跳转用 */
   templateId: number;
-  /** 挑战侧 HP 公式计算并向上取整 */
+  /** 挑战侧 HP */
   hp: number;
+  /** 使用虚构叙事专用血量计算口径 */
+  hpCalculation?: "story";
+  /** 波次能力的额外生命值倍率（1 + HPAddedRatio）；hp 已包含该倍率。缺省为 1。 */
+  hpMultiplier?: number;
+  /** 波次敌人组指定的精英组，优先于 Stage.eliteGroup；用于挑战详情跳转。 */
+  eliteGroup?: number;
   /**
-   * 库内基准血量：同口径但不含挑战战斗组（EliteGroup）倍率，向上取整。
-   * 与 hp 的比值即挑战侧相对敌人库的精英组倍率差，供跳转敌人详情时对照展示。
+   * 库内基准血量：同口径但不含挑战战斗组（EliteGroup）和波次能力倍率，向上取整。
+   * 与 hp 的比值为挑战侧相对敌人库的生命值倍率差，供跳转敌人详情时对照展示。
    */
   rawHp: number;
 }
