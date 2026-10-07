@@ -36,6 +36,14 @@ export interface HsrChallengeEnemy {
    * 与 hp 的比值为挑战侧相对敌人库的生命值倍率差，供跳转敌人详情时对照展示。
    */
   rawHp: number;
+  /** 贪饕污染等级；仅被污染实例携带 */
+  invasionLevel?: 1 | 2 | 3;
+  /**
+   * 污染生效时血量：侵染比率与波次 HPAddedRatio 同槽叠加，
+   * = ceil(基准乘积 × (1 + 波次比率 + INVASION_HP_BOOST[level]))，向上取整口径与 hp 一致；
+   * 不是在 hp（已含波次倍率）上再乘 (1 + 系数)。与 hp 平行输出：污染开关开启且本字段存在时展示本值。
+   */
+  invasionHp?: number;
 }
 
 /** 一个关卡 */
@@ -54,6 +62,16 @@ export interface HsrChallengeStage {
 /** 节点序号（1 起始）；1/2 为标准节点，3 为星启节点 */
 export type HsrChallengeNodeIndex = 1 | 2 | 3;
 
+/** 贪饕污染（StageInvasion）节点级摘要 */
+export interface HsrChallengeInvasion {
+  /** 污染等级 1–3（StageInvasionBuff.InvasionID） */
+  level: 1 | 2 | 3;
+  /** 机制描述（StageInvasionBuff.InvasionDesc，随等级微调） */
+  desc: string;
+  /** 污染标识图（StatusConfig「饕噬」图标），缺失省略 */
+  icon?: string;
+}
+
 export interface HsrChallengeNode {
   /** 节点序号（1 起始） */
   index: HsrChallengeNodeIndex;
@@ -68,6 +86,8 @@ export interface HsrChallengeNode {
   /** 展示 Boss 的图鉴特性，按源顺序 */
   bossTraits: HsrChallengeTrait[];
   stages: HsrChallengeStage[];
+  /** 贪饕污染摘要；仅受侵染节点携带 */
+  invasion?: HsrChallengeInvasion;
 }
 
 export interface HsrChallengeFloor {
@@ -92,6 +112,8 @@ export interface HsrChallengeSeasonBase extends IMetadataEntity<number> {
   selectableBuffs: HsrChallengeBuff[][];
   /** 期内是否存在星启配置；期索引保留该字段 */
   hasTierce?: boolean;
+  /** 期内是否存在贪饕污染配置（标准/星启节点或绝境层任一携带摘要）；期索引保留该字段，供期数下拉标签 */
+  hasInvasion?: boolean;
   /** 层列表；期列表（index.json）中不含本字段 */
   floors: HsrChallengeFloor[];
 }

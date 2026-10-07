@@ -1,6 +1,7 @@
 import type {
   HsrChallengeBuff,
   HsrChallengeFloor,
+  HsrChallengeInvasion,
   HsrChallengeNode,
   HsrChallengeSeasonBase,
   HsrChallengeStage,
@@ -33,6 +34,8 @@ export interface HsrChallengePeakFloor extends HsrChallengeFloor {
     /** 彩色奖牌阈值 */
     colorMedalTarget?: number;
     hardTarget?: HsrChallengeTarget;
+    /** 贪饕污染摘要；仅受侵染关卡携带（与节点同口径） */
+    invasion?: HsrChallengeInvasion;
   };
 }
 
