@@ -27,21 +27,20 @@ export interface HsrChallengeEnemy {
   hp: number;
   /** 使用虚构叙事专用血量计算口径 */
   hpCalculation?: "story";
-  /** 波次能力的额外生命值倍率（1 + HPAddedRatio）；hp 已包含该倍率。缺省为 1。 */
+  /** 波次能力的额外生命值倍率；hp 已包含该倍率。缺省为 1。 */
   hpMultiplier?: number;
-  /** 波次敌人组指定的精英组，优先于 Stage.eliteGroup；用于挑战详情跳转。 */
+  /** 波次指定的精英战斗组，优先于关卡战斗组；用于挑战详情跳转。 */
   eliteGroup?: number;
   /**
-   * 库内基准血量：同口径但不含挑战战斗组（EliteGroup）和波次能力倍率，向上取整。
+   * 库内基准血量：同口径但不含挑战战斗组和波次能力倍率，向上取整。
    * 与 hp 的比值为挑战侧相对敌人库的生命值倍率差，供跳转敌人详情时对照展示。
    */
   rawHp: number;
   /** 贪饕污染等级；仅被污染实例携带 */
   invasionLevel?: 1 | 2 | 3;
   /**
-   * 污染生效时血量：侵染比率与波次 HPAddedRatio 同槽叠加，
-   * = ceil(基准乘积 × (1 + 波次比率 + INVASION_HP_BOOST[level]))，向上取整口径与 hp 一致；
-   * 不是在 hp（已含波次倍率）上再乘 (1 + 系数)。与 hp 平行输出：污染开关开启且本字段存在时展示本值。
+   * 污染生效时血量：侵染比率与波次生命倍率同槽叠加后整体重算并向上取整，口径与 hp 一致。
+   * 与 hp 平行输出：污染开关开启且本字段存在时展示本值。
    */
   invasionHp?: number;
 }
@@ -62,13 +61,13 @@ export interface HsrChallengeStage {
 /** 节点序号（1 起始）；1/2 为标准节点，3 为星启节点 */
 export type HsrChallengeNodeIndex = 1 | 2 | 3;
 
-/** 贪饕污染（StageInvasion）节点级摘要 */
+/** 贪饕污染节点级摘要 */
 export interface HsrChallengeInvasion {
-  /** 污染等级 1–3（StageInvasionBuff.InvasionID） */
+  /** 污染等级 1–3 */
   level: 1 | 2 | 3;
-  /** 机制描述（StageInvasionBuff.InvasionDesc，随等级微调） */
+  /** 机制描述，随等级微调 */
   desc: string;
-  /** 污染标识图（StatusConfig「饕噬」图标），缺失省略 */
+  /** 污染标识图（饕噬），缺失省略 */
   icon?: string;
 }
 

@@ -64,6 +64,7 @@ import type { IMetadataEntity } from "@game/common/IEntity";
     ├── textjoin.json
     ├── avatars/
     ├── lightcones/
+    ├── gridfight/
     ├── ...
 ```
 

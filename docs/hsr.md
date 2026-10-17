@@ -117,3 +117,19 @@
 |----------|------|----------|
 | `{lang}/dicecombat/avatars.json` | 卡牌角色 | `HsrDiceAvatar[]` |
 | `{lang}/dicecombat/cardpacks.json` | 卡包 | `HsrDiceCardPack[]` |
+
+## 货币战争
+
+棋子对齐 `HsrGameAvatarSimple` 增补费用/前后台等字段，技能已替换为玩法技能；列表不含技能全文。类型位于 `src/games/hsr/quest/gridfight.ts`。
+
+| 相对路径 | 用途 | 入口类型 |
+|----------|------|----------|
+| `{lang}/gridfight/roles/index.json` | 棋子列表（`stars` 不含 `skills` / `backSkills`） | `HsrGridFightRoleSimple[]` |
+| `{lang}/gridfight/roles/{id}.json` | 棋子明细（含星级技能、后台命座） | `HsrGridFightRole` |
+| `{lang}/gridfight/equips.json` | 装备（含星徽、羁绊专武；`category === "Emblem"` 为星徽，`category === ""` 为特殊道具） | `HsrGridFightEquip[]` |
+| `{lang}/gridfight/traits.json` | 羁绊 | `HsrGridFightTrait[]` |
+| `{lang}/gridfight/divisions.json` | 职级 | `HsrGridFightDivision[]` |
+| `{lang}/gridfight/affixes.json` | 词条（`isInvasion` 为贪饕污染） | `HsrGridFightAffix[]` |
+| `{lang}/gridfight/camps.json` | 敌方阵营 | `HsrGridFightCamp[]` |
+| `{lang}/gridfight/portals.json` | 投资环境 | `HsrGridFightPortal[]` |
+| `{lang}/gridfight/augments.json` | 投资策略 | `HsrGridFightAugment[]` |
