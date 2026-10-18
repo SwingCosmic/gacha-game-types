@@ -32,8 +32,10 @@ export interface HsrGridFightRoleSimple extends HsrGameAvatarSimple {
 /** 货币战争技能（已相对常规技能完成替换）。 */
 export interface HsrGridFightSkill extends HsrAvatarSkill {
   triggerKey?: string;
-  /** 相对常规技能有改写 */
+  /** 相对常规技能有改写，标注“改” */
   isModified?: boolean;
+  /** 玩法新增技能，标注“新” */
+  isNew?: boolean;
   /** 被替换的常规技能 ID */
   overrideSrc?: number;
   /** 后台行动条件句 */
