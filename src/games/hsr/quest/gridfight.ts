@@ -131,6 +131,10 @@ export interface HsrGridFightTraitLayer {
   memberProperties?: HsrGridFightProperty[];
   allMemberProperties?: HsrGridFightProperty[];
   mazeBuffId?: number;
+  /** 对应增益的原始说明和参数，与层属性 desc/params 分别保留。 */
+  mazeBuffDesc?: string;
+  mazeBuffSimpleDesc?: string;
+  mazeBuffParams?: number[];
 }
 
 export interface HsrGridFightTraitEffectLayer {
