@@ -102,7 +102,7 @@ export interface HsrGameAvatarEnhanceableInfo {
   /** 角色ID或者加强ID */
   id: number;
   isEnhanced: boolean;
-  maxSp: number;
+  maxSp?: number;
   skills: HsrAvatarSkill[];
   ranks: HsrAvatarRank[];
   skillTrees: HsrAvatarSkillTree[];

@@ -24,6 +24,8 @@ export interface HsrGridFightRoleSimple extends HsrGameAvatarSimple {
   isInBook?: boolean;
   isExpert?: boolean;
   seasonId?: number;
+  /** 角色索引中非默认赛季版本的详情路径，相对于 gridfight/。 */
+  detailPath?: string;
   maxStar?: number;
   /** 列表快照不含 skills / backSkills */
   stars?: Omit<HsrGridFightRoleStar, "skills" | "backSkills">[];
@@ -96,11 +98,13 @@ export interface HsrGridFightEquipTag {
 export interface HsrGridFightCraft {
   id: number;
   costIds: number[];
+  seasonId?: number;
 }
 
 /** 装备 / 星徽 / 羁绊专武。 */
 export interface HsrGridFightEquip extends IMetadataEntity<number> {
   icon: string;
+  seasonId?: number;
   smallIcon?: string;
   desc?: string;
   elationDesc?: string;
@@ -119,6 +123,8 @@ export interface HsrGridFightEquip extends IMetadataEntity<number> {
   effectParams?: number[];
   tags?: HsrGridFightEquipTag[];
   craft?: HsrGridFightCraft;
+  /** 同一成品可有多种配方，每条配方有独立的赛季归属。 */
+  crafts?: HsrGridFightCraft[];
   recommendRoleIds?: number[];
 }
 
@@ -174,6 +180,7 @@ export interface HsrGridFightDifficultyRatio {
   hpRatio?: number;
   speedRatio?: number;
   stanceRatio?: number;
+  allDamageReduce?: number;
 }
 
 export interface HsrGridFightBinaryDiffAdd {
@@ -193,6 +200,8 @@ export interface HsrGridFightDivision extends IMetadataEntity<number> {
   uniqueEnvironmentDescs?: string[];
   hpMulti?: number;
   attackMulti?: number;
+  counterMulti?: number;
+  params?: number[];
   weeklyScoreModify?: number;
   expModify?: number;
   binaryNodeDiffAddRule?: number;
@@ -235,7 +244,7 @@ export interface HsrGridFightPortal extends IMetadataEntity<number> {
   showBonusId?: number;
   showBonusIds?: number[];
   delayedShowBonus?: number[];
-  seasonIds?: number[];
+  seasonId?: number;
   refTraitIds?: number[];
   presents?: HsrGridFightPresent[];
 }
@@ -247,7 +256,7 @@ export interface HsrGridFightAugment extends IMetadataEntity<number> {
   miniIcon?: string;
   params?: number[];
   chapterLimit?: number[];
-  seasonIds?: number[];
+  seasonId?: number;
   refTraitIds?: number[];
   searchKey?: string;
 }
