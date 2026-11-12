@@ -1,13 +1,5 @@
 import { IEntity, IMetadataEntity } from "@game/common/IEntity";
 
-/** 差分宇宙赛季（index.json） */
-export interface HsrRogueTournSeason extends IMetadataEntity<number> {
-  /** 赛季序号 1/2/3… */
-  season: number;
-  desc?: string;
-  icon?: string;
-}
-
 /**
  * 奇物效果
  * 差分宇宙 / 模拟宇宙共用；经 miracleEffectId 1:1 挂到奇物上

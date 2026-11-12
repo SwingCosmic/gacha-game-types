@@ -5,6 +5,15 @@ import {
   HsrGameAvatarSimple,
 } from "../HsrGameAvatar";
 
+/** 两个原始属性表合并后的字典条目（gridfight/properties.json）。 */
+export interface HsrGridFightPropertyMetadata extends IMetadataEntity<string> {
+  isPercent: boolean;
+  miniIcon?: string;
+  panelName?: string;
+  visible: boolean;
+  order: number;
+}
+
 /** 货币战争棋子列表快照。对齐 HsrGameAvatarSimple，增补玩法字段，不含晋阶 / 皮肤 / 行迹。 */
 export interface HsrGridFightRoleSimple extends HsrGameAvatarSimple {
   /** 对应常规角色 ID。费用变体（如银狼 LV.999 的 3/4/5 费）与本体共用此值 */

@@ -96,13 +96,17 @@
 | `{lang}/tarotwiki/index.json` | 实验进程树，有三层结构 | `HsrTarotWikiTimeline[]` |
 | `{lang}/tarotwiki/changes.json` | 解锁与变更条件 | `HsrTarotWikiUnlockCondition[]` |
 
+## 公共赛季
+
+货币战争和差分宇宙的 `index.json` 均使用 `HsrSeason[]`，定义位于 `src/games/hsr/HsrSeason.ts`。`id` 是唯一记录键，`season` 是实际赛季编号；共有字段还包括 `name`、可选 `icon` 和 `desc`。
+
 ## 差分宇宙
 
 目前有3个赛季，部分表只在特定赛季可用，如S3乐园漫记。
 
 | 相对路径 | 用途 | 入口类型 | 赛季 |
 |----------|------|----------|------|
-| `{lang}/rogue/tourn/index.json` | 赛季列表 | `HsrRogueTournSeason[]` | |
+| `{lang}/rogue/tourn/index.json` | 赛季列表 | `HsrSeason[]`（`HsrSeason`） | |
 | `{lang}/rogue/tourn/miracles.json` | 奇物 | `HsrRogueMiracle[]`（`rogue/tourn`） | 跨赛季 |
 | `{lang}/rogue/tourn/titans.json` | 泰坦 | `HsrRogueTitan[]`（`rogue/tourn2`） | S2 |
 | `{lang}/rogue/tourn/roomcomptypes.json` | 房间类型 | `HsrRogueRoomCompType[]`（`rogue/tourn3`） | S3 |
