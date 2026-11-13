@@ -1,4 +1,4 @@
-import { IMetadataEntity } from "@game/common/IEntity";
+import { IEntity, IMetadataEntity } from "@game/common/IEntity";
 import {
   HsrAvatarRank,
   HsrAvatarSkill,
@@ -112,6 +112,8 @@ export interface HsrGridFightCraft {
 
 /** 装备 / 星徽 / 羁绊专武。 */
 export interface HsrGridFightEquip extends IMetadataEntity<number> {
+  /** 实际关联的装备配置 ID，不能由实体 id 替代。 */
+  configId: number;
   icon: string;
   seasonId?: number;
   smallIcon?: string;
@@ -130,6 +132,7 @@ export interface HsrGridFightEquip extends IMetadataEntity<number> {
   properties?: HsrGridFightProperty[];
   params?: number[];
   effectParams?: number[];
+  tagIds?: number[];
   tags?: HsrGridFightEquipTag[];
   craft?: HsrGridFightCraft;
   /** 同一成品可有多种配方，每条配方有独立的赛季归属。 */
@@ -268,4 +271,89 @@ export interface HsrGridFightAugment extends IMetadataEntity<number> {
   seasonId?: number;
   refTraitIds?: number[];
   searchKey?: string;
+}
+
+/** 奇遇伙伴效果 */
+export interface HsrGridFightPetPalEffect extends IEntity<number> {
+  desc: string;
+  addDesc?: string;
+  switchDesc: string;
+  simpleDesc?: string;
+  isOCEffective?: boolean;
+  jsonPath: string;
+  params: number[];
+}
+
+/** 奇遇伙伴效果组 */
+export interface HsrGridFightPetPalHandbookGroup extends IEntity<number> {
+  petpalId: number;
+  categoryId: number;
+  categoryDesc: string;
+  desc: string;
+  effectIds: number[];
+  /** 分组后的效果 */
+  effects: HsrGridFightPetPalEffect[];
+}
+
+/** 奇遇伙伴 */
+export interface HsrGridFightPetPal extends IMetadataEntity<number> {
+  desc?: string;
+  headImage?: string;
+  smallIcon?: string;
+  figureUp?: string;
+  figureDown?: string;
+  sort: number;
+  /** 伙伴原始效果池顺序 */
+  effectIds: number[];
+  handbookGroups: HsrGridFightPetPalHandbookGroup[];
+}
+
+export interface HsrGridFightSpotLightTag extends IMetadataEntity<number> {
+  tagColor: string;
+}
+
+/** 已有赛季实体的复合引用 */
+export interface HsrGridFightSeasonEntityRef extends IEntity<number> {
+  seasonId: number;
+}
+
+/** 主角光环，独立于羁绊；仅部分条目通过 traitId 关联 Spotlight 羁绊。 */
+export interface HsrGridFightSpotLight extends IMetadataEntity<number> {
+  desc: string;
+  params: number[];
+  jsonPath: string;
+  tagIds: number[];
+  tags: HsrGridFightSpotLightTag[];
+  suitableRoleIds: number[];
+  suitableRoles: HsrGridFightSeasonEntityRef[];
+  isOCEffective: boolean;
+  isCarry?: boolean;
+  enemyDiffLvAdd?: number;
+  traitId?: number;
+  traits?: HsrGridFightSeasonEntityRef[];
+  remark?: { desc: string; params: number[] };
+}
+
+export interface HsrGridFightRoleSpotLightRecommendation {
+  roleId: number;
+  seasonId: number;
+  frontBackType: "Both" | "Front" | "Back";
+  firstRecommendSpotLightIds: number[];
+  secondRecommendSpotLightIds: number[];
+}
+
+export interface HsrGridFightSpotLightMazeBuff extends IMetadataEntity<number> {
+  desc: string;
+  nameHash: string;
+  descHash: string;
+  params: number[];
+  level: number;
+  maxLevel: number;
+  buffSeries: number;
+  buffRarity: number;
+  modifierName: string;
+  inBattleBindingType: string;
+  inBattleBindingKey: string;
+  buffEffect: string;
+  mazeBuffType: string;
 }

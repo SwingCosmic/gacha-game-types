@@ -1,5 +1,6 @@
 import { IMetadataEntity } from "@game/common/IEntity";
 import { HsrItem, HsrItemCost, HsrSkillLevel } from "./HsrItem";
+import type { HsrAvatarExRank } from "./HsrAvatarExRank";
 
 export interface HsrAvatarView  {
   /** 角色列表图标 */
@@ -35,6 +36,9 @@ export interface HsrGameServant extends HsrGameServantSimple , HsrGameAvatarEnha
 export interface HsrGameAvatar extends HsrGameAvatarSimple { 
   versions: HsrGameAvatarEnhanceableInfo[];
 
+  /** 奇缘星魂：独立于普通六阶星魂 */
+  exRanks?: HsrAvatarExRank[];
+
   promotions: HsrAvatarPromotion[];
   skins: HsrGameAvatarSkin[];
 }
@@ -53,6 +57,11 @@ export interface HsrAvatarSkill extends IMetadataEntity<number> {
 
   /** 仅德谬歌的专属技能有 */
   picture?: string;
+  /** 技能关联的角色 ID，用于头像展示；包含阿哈和德谬歌的技能 */
+  avatarId?: number;
+  /** 技能可用角色列表，目前只有姬子启行助战技有。 */
+  linkToAvatarIds?: number[];
+  linkToAvatarIdsSimplified?: number[];
 
   /** 削韧值 */
   toughness?: number;
@@ -63,10 +72,27 @@ export interface HsrAvatarSkill extends IMetadataEntity<number> {
   spCost?: number;
   /** 欢愉技能“参演编号” （速度）*/
   elationPriority?: number;
+  /** 源技能表的奇缘星魂 ID */
+  relatedExRankIds?: number[];
 }
 
 export interface HsrAvatarSkillLevel extends HsrSkillLevel {
   simpleParams: number[];
+}
+
+/** 系列技能：目前只有阿哈有 */
+export interface HsrAvatarSeriesSkill extends HsrAvatarSkill {
+  avatarId: number;
+  levels: HsrAvatarSeriesSkillLevel[];
+  framePrefab: string;
+  specialTagPrefab: string;
+  relatedAvatarIds: number[];
+}
+
+export interface HsrAvatarSeriesSkillLevel extends HsrAvatarSkillLevel {
+  /** 系列等级解锁条件，不是普通技能材料升级条件。 */
+  unlockCondition: { type: string; param: string };
+  specialTag?: string;
 }
 
 export interface HsrAvatarRank extends IMetadataEntity<number> {
@@ -104,6 +130,7 @@ export interface HsrGameAvatarEnhanceableInfo {
   isEnhanced: boolean;
   maxSp?: number;
   skills: HsrAvatarSkill[];
+  seriesSkills?: HsrAvatarSeriesSkill[];
   ranks: HsrAvatarRank[];
   skillTrees: HsrAvatarSkillTree[];
 }
